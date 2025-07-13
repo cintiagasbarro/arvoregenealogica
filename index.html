@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Árvore Genealógica - Eurípedes e Marta</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <h1>Árvore Genealógica: Eurípedes e Marta</h1>
+
+  <div style="margin-bottom: 10px;">
+    <button onclick="goToParent()">Voltar</button>
+    <button onclick="goToRoot()">Ir ao Início</button>
+  </div>
+
+  <div id="tree-container" class="scrollable-tree">
+    <svg id="tree" width="100%" height="auto"></svg>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

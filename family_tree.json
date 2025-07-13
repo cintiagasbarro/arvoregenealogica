@@ -1,0 +1,43 @@
+{
+  "name": "Eurípedes e Marta",
+  "children": [
+    {
+      "name": "João Silva",
+      "children": [
+        {
+          "name": "Pedro Silva",
+          "children": [
+            {"name": "Ana Silva"},
+            {"name": "Carlos Silva"}
+          ]
+        },
+        {
+          "name": "Maria Silva",
+          "children": [
+            {"name": "José Silva"},
+            {"name": "Antônia Silva"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Maria Santos",
+      "children": [
+        {
+          "name": "Paulo Santos",
+          "children": [
+            {"name": "Luiza Santos"},
+            {"name": "Roberto Santos"}
+          ]
+        },
+        {
+          "name": "Teresa Santos",
+          "children": [
+            {"name": "Fernanda Santos"},
+            {"name": "Ricardo Santos"}
+          ]
+        }
+      ]
+    }
+  ]
+}
