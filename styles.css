@@ -11,6 +11,8 @@ body {
   border: 1px solid #ddd;
   padding: 10px;
   background: white;
+  width: 100%;
+  min-width: 800px; /* Largura mínima para evitar cortes */
 }
 
 .node circle {
