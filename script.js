@@ -44,6 +44,11 @@ function update(source) {
   nodes.forEach(d => {
     d.y = d.depth * 250 + margin.left; // Maior espaçamento entre níveis
     d.x = d.x + margin.top;
+    
+    // Ajusta posição vertical para filhos únicos
+    if (d.parent && d.parent.children && d.parent.children.length === 1) {
+      d.x = d.x + 40; // Move 40px para baixo se for filho único
+    }
   });
 
   const svg = d3.select("#tree");
