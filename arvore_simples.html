@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Árvore Genealógica - Botões</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .control-btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .family-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .member-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .generation-0 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .generation-1 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            margin-left: 30px;
+        }
+        
+        .generation-2 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            margin-left: 60px;
+        }
+        
+        .generation-3 {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: #2c3e50;
+            margin-left: 90px;
+        }
+        
+        .member-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .has-children::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .expanded::after {
+            content: '−';
+        }
+        
+        .children-container {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+        }
+        
+        .children-container.show {
+            max-height: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Árvore Genealógica: Eurípedes e Marta</h1>
+    
+    <div class="controls">
+        <button class="control-btn" onclick="collapseAll()">Fechar Tudo</button>
+        <button class="control-btn" onclick="expandAll()">Abrir Tudo</button>
+    </div>
+
+    <div class="family-container">
+        <div id="family-tree">
+            <!-- Árvore será inserida aqui -->
+        </div>
+    </div>
+
+    <script>
+        // Log para debug
+        console.log('Script iniciado');
+        
+        // Dados da família
+        var familyData = {
+            name: "Eurípedes e Marta",
+            children: [
+                {
+                    name: "João Silva",
+                    children: [
+                        {
+                            name: "Pedro Silva",
+                            children: [
+                                {name: "Ana Silva"},
+                                {name: "Carlos Silva"}
+                            ]
+                        },
+                        {
+                            name: "Maria Silva", 
+                            children: [
+                                {name: "José Silva"},
+                                {name: "Antônia Silva"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "Maria Santos",
+                    children: [
+                        {
+                            name: "Paulo Santos",
+                            children: [
+                                {name: "Luiza Santos"}
+                            ]
+                        },
+                        {
+                            name: "Teresa Santos",
+                            children: [
+                                {name: "Fernanda Santos"},
+                                {name: "Ricardo Santos"}
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+        
+        console.log('Dados carregados:', familyData);
+        
+        // Função para criar botão
+        function createButton(member, generation) {
+            console.log('Criando botão para:', member.name);
+            
+            var container = document.createElement('div');
+            
+            var button = document.createElement('button');
+            button.className = 'member-button generation-' + generation;
+            button.textContent = member.name;
+            
+            if (member.children && member.children.length > 0) {
+                button.className += ' has-children';
+                
+                button.onclick = function() {
+                    console.log('Clique em:', member.name);
+                    toggleChildren(container, member, generation);
+                };
+            }
+            
+            container.appendChild(button);
+            return container;
+        }
+        
+        // Função para alternar filhos
+        function toggleChildren(container, member, generation) {
+            var childrenDiv = container.querySelector('.children-container');
+            
+            if (!childrenDiv) {
+                // Criar div de filhos
+                childrenDiv = document.createElement('div');
+                childrenDiv.className = 'children-container';
+                
+                // Adicionar filhos
+                for (var i = 0; i < member.children.length; i++) {
+                    var childContainer = createButton(member.children[i], generation + 1);
+                    childrenDiv.appendChild(childContainer);
+                }
+                
+                container.appendChild(childrenDiv);
+            }
+            
+            var button = container.querySelector('.member-button');
+            
+            if (childrenDiv.classList.contains('show')) {
+                childrenDiv.classList.remove('show');
+                button.classList.remove('expanded');
+            } else {
+                childrenDiv.classList.add('show');
+                button.classList.add('expanded');
+            }
+        }
+        
+        // Função para colapsar tudo
+        function collapseAll() {
+            var allContainers = document.querySelectorAll('.children-container');
+            var allButtons = document.querySelectorAll('.member-button.has-children');
+            
+            for (var i = 0; i < allContainers.length; i++) {
+                allContainers[i].classList.remove('show');
+            }
+            
+            for (var i = 0; i < allButtons.length; i++) {
+                allButtons[i].classList.remove('expanded');
+            }
+        }
+        
+        // Função para expandir tudo
+        function expandAll() {
+            var allButtons = document.querySelectorAll('.member-button.has-children');
+            
+            for (var i = 0; i < allButtons.length; i++) {
+                if (!allButtons[i].classList.contains('expanded')) {
+                    allButtons[i].click();
+                }
+            }
+        }
+        
+        // Inicializar
+        function init() {
+            console.log('Inicializando árvore');
+            
+            var container = document.getElementById('family-tree');
+            if (!container) {
+                console.error('Container não encontrado!');
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            var rootContainer = createButton(familyData, 0);
+            container.appendChild(rootContainer);
+            
+            console.log('Árvore criada com sucesso!');
+        }
+        
+        // Aguardar DOM carregar
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+        
+        console.log('Script carregado completamente');
+    </script>
+</body>
+</html>
