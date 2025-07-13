@@ -74,28 +74,29 @@ function update(source) {
     .on("click", (event, d) => {
       event.stopPropagation(); // Previne bubbling
       
-      if (d.children) {
-        // Se já expandido, colapsa
-        d._children = d.children;
-        d.children = null;
+      // NOVA LÓGICA DE NAVEGAÇÃO:
+      // 1. Se tem filhos (expandidos ou não) e não é folha, navega para esse nó
+      // 2. Se é folha (não tem filhos), volta para geração anterior
+      
+      if (d.children || d._children) {
+        // Tem filhos - navega para esse nó mantendo os pais visíveis
+        navigateToNode(d);
       } else {
-        // Se colapsado, expande
-        d.children = d._children;
-        d._children = null;
+        // É folha - volta para geração anterior
+        goToParent();
       }
-      
-      // Atualiza o stack de navegação apenas quando expandindo um nó
-      if (d.children) {
-        navigationStack.push(d);
-        currentRoot = d;
-      }
-      
-      update(d);
     });
 
   node.append("circle")
     .attr("r", 6)
-    .attr("fill", "#007BFF");
+    .attr("fill", d => {
+      // Destaca nós que podem expandir (têm filhos)
+      if (d.children || d._children) {
+        return "#007BFF"; // Azul para nós com filhos
+      } else {
+        return "#28a745"; // Verde para folhas (clique volta)
+      }
+    });
 
   // Texto posicionado à direita do círculo
   node.append("text")
@@ -130,19 +131,35 @@ function update(source) {
   currentRoot = source;
 }
 
+// NOVA FUNÇÃO: Navegar para um nó específico mantendo os pais
+function navigateToNode(targetNode) {
+  // Expande o nó alvo para mostrar seus filhos
+  if (targetNode._children) {
+    targetNode.children = targetNode._children;
+    targetNode._children = null;
+  }
+  
+  // Adiciona ao stack de navegação
+  navigationStack.push(targetNode);
+  currentRoot = targetNode;
+  
+  // Atualiza a visualização focando no nó alvo
+  update(targetNode);
+}
+
 // Função para voltar ao nó anterior
 function goToParent() {
   if (navigationStack.length > 1) {
     navigationStack.pop(); // Remove o nó atual
     const previousNode = navigationStack[navigationStack.length - 1];
     
-    // Colapsa o nó atual e expande o anterior
+    // Colapsa o nó atual se ele tem filhos expandidos
     if (currentRoot && currentRoot.children) {
       currentRoot._children = currentRoot.children;
       currentRoot.children = null;
     }
     
-    // Expande o nó anterior
+    // Expande o nó anterior para mostrar seus filhos
     if (previousNode._children) {
       previousNode.children = previousNode._children;
       previousNode._children = null;
