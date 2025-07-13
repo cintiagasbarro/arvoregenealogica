@@ -106,10 +106,16 @@ function update(source) {
     d.y0 = d.y;
   });
 
-  // Atualiza o tamanho do SVG com margem adequada
+  // Atualiza o tamanho do SVG com margens adequadas
   const boundingBox = svg.node().getBBox();
-  svg.attr("width", Math.max(boundingBox.width + 200, width)); // Margem extra
-  svg.attr("height", Math.max(boundingBox.height + 100, height));
+  const svgWidth = Math.max(boundingBox.width + margin.left + margin.right + 100, width);
+  const svgHeight = Math.max(boundingBox.height + margin.top + margin.bottom + 100, height);
+  
+  svg.attr("width", svgWidth);
+  svg.attr("height", svgHeight);
+  
+  // Atualiza também o viewBox para garantir que tudo seja visível
+  svg.attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`);
 
   // Atualiza o estado atual
   currentRoot = source;
