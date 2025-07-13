@@ -75,10 +75,14 @@ function update(source) {
       event.stopPropagation(); // Previne bubbling
       
       // NOVA LÓGICA DE NAVEGAÇÃO:
-      // 1. Se tem filhos (expandidos ou não) e não é folha, navega para esse nó
-      // 2. Se é folha (não tem filhos), volta para geração anterior
+      // 1. Se é o nó atual (raiz da visualização), volta para geração anterior
+      // 2. Se tem filhos, navega para esse nó
+      // 3. Se é folha, volta para geração anterior
       
-      if (d.children || d._children) {
+      if (d === currentRoot) {
+        // É o nó atual - volta para geração anterior
+        goToParent();
+      } else if (d.children || d._children) {
         // Tem filhos - navega para esse nó mantendo os pais visíveis
         navigateToNode(d);
       } else {
