@@ -127,7 +127,7 @@
         // Log para debug
         console.log('Script iniciado');
         
-        // Dados da família
+        // Dados da família COMPLETA
         var familyData = {
             name: "Eurípedes e Marta",
             children: [
@@ -137,15 +137,76 @@
                         {
                             name: "Pedro Silva",
                             children: [
-                                {name: "Ana Silva"},
-                                {name: "Carlos Silva"}
+                                {
+                                    name: "Ana Silva",
+                                    children: [
+                                        {name: "Miguel Silva"},
+                                        {name: "Sofia Silva"},
+                                        {name: "Rafael Silva"}
+                                    ]
+                                },
+                                {
+                                    name: "Carlos Silva",
+                                    children: [
+                                        {name: "Isabella Silva"},
+                                        {name: "Leonardo Silva"}
+                                    ]
+                                },
+                                {
+                                    name: "Beatriz Silva",
+                                    children: [
+                                        {name: "Giovanna Silva"},
+                                        {name: "Enzo Silva"},
+                                        {name: "Valentina Silva"}
+                                    ]
+                                }
                             ]
                         },
                         {
-                            name: "Maria Silva", 
+                            name: "Maria Silva",
                             children: [
-                                {name: "José Silva"},
-                                {name: "Antônia Silva"}
+                                {
+                                    name: "José Silva",
+                                    children: [
+                                        {name: "Alice Silva"},
+                                        {name: "Arthur Silva"}
+                                    ]
+                                },
+                                {
+                                    name: "Antônia Silva",
+                                    children: [
+                                        {name: "Helena Silva"},
+                                        {name: "Theo Silva"},
+                                        {name: "Laura Silva"}
+                                    ]
+                                },
+                                {
+                                    name: "Francisco Silva",
+                                    children: [
+                                        {name: "Manuela Silva"},
+                                        {name: "Pedro Henrique Silva"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "Roberto Silva",
+                            children: [
+                                {
+                                    name: "Camila Silva",
+                                    children: [
+                                        {name: "Nicolas Silva"},
+                                        {name: "Cecília Silva"}
+                                    ]
+                                },
+                                {
+                                    name: "Eduardo Silva",
+                                    children: [
+                                        {name: "Lara Silva"},
+                                        {name: "Gabriel Silva"},
+                                        {name: "Mariana Silva"}
+                                    ]
+                                }
                             ]
                         }
                     ]
@@ -156,14 +217,209 @@
                         {
                             name: "Paulo Santos",
                             children: [
-                                {name: "Luiza Santos"}
+                                {
+                                    name: "Luiza Santos",
+                                    children: [
+                                        {name: "João Pedro Santos"},
+                                        {name: "Maria Eduarda Santos"}
+                                    ]
+                                },
+                                {
+                                    name: "Ricardo Santos",
+                                    children: [
+                                        {name: "Isadora Santos"},
+                                        {name: "Lorenzo Santos"},
+                                        {name: "Lívia Santos"}
+                                    ]
+                                }
                             ]
                         },
                         {
                             name: "Teresa Santos",
                             children: [
-                                {name: "Fernanda Santos"},
-                                {name: "Ricardo Santos"}
+                                {
+                                    name: "Fernanda Santos",
+                                    children: [
+                                        {name: "Davi Santos"},
+                                        {name: "Júlia Santos"}
+                                    ]
+                                },
+                                {
+                                    name: "Carlos Santos",
+                                    children: [
+                                        {name: "Emanuelly Santos"},
+                                        {name: "Benjamin Santos"},
+                                        {name: "Yasmin Santos"}
+                                    ]
+                                },
+                                {
+                                    name: "Marcela Santos",
+                                    children: [
+                                        {name: "Matheus Santos"},
+                                        {name: "Rebeca Santos"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "André Santos",
+                            children: [
+                                {
+                                    name: "Patrícia Santos",
+                                    children: [
+                                        {name: "Samuel Santos"},
+                                        {name: "Ana Clara Santos"},
+                                        {name: "João Miguel Santos"}
+                                    ]
+                                },
+                                {
+                                    name: "Bruno Santos",
+                                    children: [
+                                        {name: "Melissa Santos"},
+                                        {name: "Felipe Santos"}
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "Roberto Oliveira",
+                    children: [
+                        {
+                            name: "Marcos Oliveira",
+                            children: [
+                                {
+                                    name: "Lucas Oliveira",
+                                    children: [
+                                        {name: "Heitor Oliveira"},
+                                        {name: "Antonella Oliveira"}
+                                    ]
+                                },
+                                {
+                                    name: "Gabriel Oliveira",
+                                    children: [
+                                        {name: "Noah Oliveira"},
+                                        {name: "Ayla Oliveira"},
+                                        {name: "Lucca Oliveira"}
+                                    ]
+                                },
+                                {
+                                    name: "Letícia Oliveira",
+                                    children: [
+                                        {name: "Bernardo Oliveira"},
+                                        {name: "Lavínia Oliveira"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "Sandra Oliveira",
+                            children: [
+                                {
+                                    name: "Daniel Oliveira",
+                                    children: [
+                                        {name: "Maria Alice Oliveira"},
+                                        {name: "Gael Oliveira"}
+                                    ]
+                                },
+                                {
+                                    name: "Cristina Oliveira",
+                                    children: [
+                                        {name: "Pietra Oliveira"},
+                                        {name: "Anthony Oliveira"},
+                                        {name: "Stella Oliveira"}
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "Ana Costa",
+                    children: [
+                        {
+                            name: "Felipe Costa",
+                            children: [
+                                {
+                                    name: "Larissa Costa",
+                                    children: [
+                                        {name: "Isaac Costa"},
+                                        {name: "Maitê Costa"}
+                                    ]
+                                },
+                                {
+                                    name: "Victor Costa",
+                                    children: [
+                                        {name: "Cauã Costa"},
+                                        {name: "Esther Costa"},
+                                        {name: "Thomas Costa"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "Juliana Costa",
+                            children: [
+                                {
+                                    name: "Renato Costa",
+                                    children: [
+                                        {name: "Luna Costa"},
+                                        {name: "Murilo Costa"}
+                                    ]
+                                },
+                                {
+                                    name: "Carolina Costa",
+                                    children: [
+                                        {name: "Agatha Costa"},
+                                        {name: "Ryan Costa"},
+                                        {name: "Emilly Costa"}
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "Carlos Pereira",
+                    children: [
+                        {
+                            name: "Daniela Pereira",
+                            children: [
+                                {
+                                    name: "Thiago Pereira",
+                                    children: [
+                                        {name: "Sophia Pereira"},
+                                        {name: "Henrique Pereira"}
+                                    ]
+                                },
+                                {
+                                    name: "Amanda Pereira",
+                                    children: [
+                                        {name: "Ravi Pereira"},
+                                        {name: "Olívia Pereira"},
+                                        {name: "Caleb Pereira"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "Rodrigo Pereira",
+                            children: [
+                                {
+                                    name: "Bianca Pereira",
+                                    children: [
+                                        {name: "Ian Pereira"},
+                                        {name: "Catarina Pereira"}
+                                    ]
+                                },
+                                {
+                                    name: "Gustavo Pereira",
+                                    children: [
+                                        {name: "Clara Pereira"},
+                                        {name: "Vicente Pereira"}
+                                    ]
+                                }
                             ]
                         }
                     ]
