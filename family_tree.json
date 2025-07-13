@@ -5,7 +5,7 @@
       "name": "João Silva",
       "children": [
         {
-          "name": "Pedro Silva",
+          "name": "Pedro Silva (filho único)",
           "children": [
             {"name": "Ana Silva"},
             {"name": "Carlos Silva"}
@@ -26,8 +26,7 @@
         {
           "name": "Paulo Santos",
           "children": [
-            {"name": "Luiza Santos"},
-            {"name": "Roberto Santos"}
+            {"name": "Luiza Santos (filha única)"}
           ]
         },
         {
@@ -35,6 +34,18 @@
           "children": [
             {"name": "Fernanda Santos"},
             {"name": "Ricardo Santos"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Roberto Oliveira (filho único)",
+      "children": [
+        {
+          "name": "Marcos Oliveira (também filho único)",
+          "children": [
+            {"name": "Lucas Oliveira"},
+            {"name": "Gabriel Oliveira"}
           ]
         }
       ]
