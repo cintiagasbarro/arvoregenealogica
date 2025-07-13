@@ -27,9 +27,8 @@ body {
   pointer-events: none;
   text-anchor: start;  /* Sempre alinhado à esquerda */
   dominant-baseline: central;
-  white-space: pre-wrap;
-  max-width: 150px;
-  word-break: break-all;
+  white-space: nowrap;  /* Evita quebra de linha */
+  overflow: visible;    /* Garante que texto não seja cortado */
 }
 
 .link {
