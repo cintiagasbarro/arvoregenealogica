@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Debug - Árvore Genealógica</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .debug {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+        
+        .family-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .member-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: left;
+            background: #007bff;
+            color: white;
+        }
+        
+        .member-button:hover {
+            background: #0056b3;
+        }
+        
+        .generation-1 {
+            margin-left: 30px;
+            background: #dc3545;
+        }
+        
+        .generation-2 {
+            margin-left: 60px;
+            background: #28a745;
+        }
+        
+        .children-container {
+            margin-top: 10px;
+        }
+        
+        .children-container.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Debug - Árvore Genealógica</h1>
+    
+    <div class="debug" id="debug-info">
+        Carregando debug...
+    </div>
+    
+    <div class="family-container">
+        <div id="family-tree">
+            Carregando árvore...
+        </div>
+    </div>
+
+    <script>
+        // Debug log
+        function debugLog(message) {
+            console.log('DEBUG:', message);
+            const debugDiv = document.getElementById('debug-info');
+            debugDiv.innerHTML += '<br>' + message;
+        }
+        
+        debugLog('Script iniciado');
+        
+        // Dados simples para teste
+        const familyData = {
+            name: "Eurípedes e Marta",
+            children: [
+                {
+                    name: "João Silva",
+                    children: [
+                        { name: "Pedro Silva" },
+                        { name: "Maria Silva" }
+                    ]
+                },
+                {
+                    name: "Maria Santos",
+                    children: [
+                        { name: "Paulo Santos" },
+                        { name: "Teresa Santos" }
+                    ]
+                }
+            ]
+        };
+        
+        debugLog('Dados carregados: ' + familyData.name);
+        
+        function createButton(member, generation) {
+            debugLog('Criando botão para: ' + member.name);
+            
+            const button = document.createElement('button');
+            button.className = 'member-button generation-' + generation;
+            button.textContent = member.name;
+            
+            if (member.children && member.children.length > 0) {
+                button.textContent += ' (+)';
+                
+                button.addEventListener('click', function() {
+                    debugLog('Clique em: ' + member.name);
+                    
+                    // Encontra ou cria container de filhos
+                    let childrenContainer = button.nextElementSibling;
+                    if (!childrenContainer || !childrenContainer.classList.contains('children-container')) {
+                        childrenContainer = document.createElement('div');
+                        childrenContainer.className = 'children-container hidden';
+                        button.parentNode.insertBefore(childrenContainer, button.nextSibling);
+                        
+                        // Adiciona filhos
+                        member.children.forEach(function(child) {
+                            const childElement = createButton(child, generation + 1);
+                            childrenContainer.appendChild(childElement);
+                        });
+                    }
+                    
+                    // Toggle visibilidade
+                    if (childrenContainer.classList.contains('hidden')) {
+                        childrenContainer.classList.remove('hidden');
+                        button.textContent = member.name + ' (-)';
+                    } else {
+                        childrenContainer.classList.add('hidden');
+                        button.textContent = member.name + ' (+)';
+                    }
+                });
+            }
+            
+            return button;
+        }
+        
+        // Renderiza quando DOM estiver pronto
+        document.addEventListener('DOMContentLoaded', function() {
+            debugLog('DOM carregado, renderizando árvore');
+            
+            const container = document.getElementById('family-tree');
+            container.innerHTML = '';
+            
+            const rootButton = createButton(familyData, 0);
+            container.appendChild(rootButton);
+            
+            debugLog('Árvore renderizada');
+        });
+        
+        debugLog('Script carregado completamente');
+    </script>
+</body>
+</html>
