@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Teste - Árvore Genealógica</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f5f5f5;
+    }
+    
+    .family-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .member-button {
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      text-align: left;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .generation-0 {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      font-weight: bold;
+    }
+    
+    .generation-1 {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      color: white;
+      margin-left: 30px;
+    }
+    
+    .generation-2 {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      color: white;
+      margin-left: 60px;
+    }
+    
+    .generation-3 {
+      background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      color: #2c3e50;
+      margin-left: 90px;
+    }
+    
+    .member-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    
+    .has-children::after {
+      content: '+';
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    .expanded::after {
+      content: '−';
+    }
+    
+    .children-container {
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      max-height: 0;
+    }
+    
+    .children-container.expanded {
+      max-height: 1000px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Árvore Genealógica: Eurípedes e Marta</h1>
+  
+  <div class="family-container">
+    <div id="family-tree"></div>
+  </div>
+
+  <script>
+    // Dados da família
+    const familyData = {
+      "name": "Eurípedes e Marta",
+      "children": [
+        {
+          "name": "João Silva",
+          "children": [
+            {
+              "name": "Pedro Silva",
+              "children": [
+                {"name": "Ana Silva"},
+                {"name": "Carlos Silva"}
+              ]
+            },
+            {
+              "name": "Maria Silva",
+              "children": [
+                {"name": "José Silva"},
+                {"name": "Antônia Silva"}
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Maria Santos",
+          "children": [
+            {
+              "name": "Paulo Santos",
+              "children": [
+                {"name": "Luiza Santos"}
+              ]
+            },
+            {
+              "name": "Teresa Santos",
+              "children": [
+                {"name": "Fernanda Santos"},
+                {"name": "Ricardo Santos"}
+              ]
+            }
+          ]
+        }
+      ]
+    };
+
+    // Renderiza um membro da família
+    function renderMember(member, container, generation) {
+      // Cria o botão do membro
+      const button = document.createElement('button');
+      button.className = `member-button generation-${generation}`;
+      button.textContent = member.name;
+      
+      // Se tem filhos, adiciona funcionalidade
+      if (member.children && member.children.length > 0) {
+        button.classList.add('has-children');
+        
+        // Cria container para filhos
+        const childrenContainer = document.createElement('div');
+        childrenContainer.className = 'children-container';
+        
+        // Adiciona evento de clique
+        button.addEventListener('click', () => {
+          const isExpanded = childrenContainer.classList.contains('expanded');
+          
+          if (isExpanded) {
+            // Colapsa
+            childrenContainer.classList.remove('expanded');
+            button.classList.remove('expanded');
+          } else {
+            // Expande
+            childrenContainer.classList.add('expanded');
+            button.classList.add('expanded');
+            
+            // Renderiza filhos se ainda não foram renderizados
+            if (childrenContainer.children.length === 0) {
+              member.children.forEach(child => {
+                renderMember(child, childrenContainer, generation + 1);
+              });
+            }
+          }
+        });
+        
+        container.appendChild(button);
+        container.appendChild(childrenContainer);
+      } else {
+        // Sem filhos, apenas adiciona o botão
+        container.appendChild(button);
+      }
+    }
+
+    // Inicializa
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('family-tree');
+      renderMember(familyData, container, 0);
+    });
+  </script>
+</body>
+</html>
