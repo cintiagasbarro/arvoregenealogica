@@ -1,16 +1,58 @@
-// Dados da família (mesmo JSON mas estruturado)
-let familyData = null;
-
-// Carrega os dados do JSON
-async function loadFamilyData() {
-  try {
-    const response = await fetch('family_tree.json');
-    familyData = await response.json();
-    renderFamilyTree();
-  } catch (error) {
-    console.error('Erro ao carregar dados da família:', error);
-  }
-}
+// Dados da família (embutidos no código para evitar problemas de CORS)
+const familyData = {
+  "name": "Eurípedes e Marta",
+  "children": [
+    {
+      "name": "João Silva",
+      "children": [
+        {
+          "name": "Pedro Silva (filho único)",
+          "children": [
+            {"name": "Ana Silva"},
+            {"name": "Carlos Silva"}
+          ]
+        },
+        {
+          "name": "Maria Silva",
+          "children": [
+            {"name": "José Silva"},
+            {"name": "Antônia Silva"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Maria Santos",
+      "children": [
+        {
+          "name": "Paulo Santos",
+          "children": [
+            {"name": "Luiza Santos (filha única)"}
+          ]
+        },
+        {
+          "name": "Teresa Santos",
+          "children": [
+            {"name": "Fernanda Santos"},
+            {"name": "Ricardo Santos"}
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Roberto Oliveira (filho único)",
+      "children": [
+        {
+          "name": "Marcos Oliveira (também filho único)",
+          "children": [
+            {"name": "Lucas Oliveira"},
+            {"name": "Gabriel Oliveira"}
+          ]
+        }
+      ]
+    }
+  ]
+};
 
 // Renderiza a árvore genealógica
 function renderFamilyTree() {
@@ -39,6 +81,7 @@ function renderMember(member, container, generation) {
     
     // Adiciona evento de clique
     button.addEventListener('click', () => {
+      console.log('Clicou em:', member.name); // Debug
       toggleChildren(memberDiv, member, generation);
     });
   }
@@ -73,6 +116,8 @@ function toggleChildren(memberDiv, member, generation) {
 
 // Expande os filhos
 function expandChildren(button, childrenContainer, member, generation) {
+  console.log('Expandindo filhos de:', member.name); // Debug
+  
   button.classList.add('expanded');
   childrenContainer.classList.remove('collapsed');
   childrenContainer.classList.add('expanded', 'expanding');
@@ -168,5 +213,6 @@ function findMemberByName(data, name) {
 
 // Inicializa quando a página carrega
 document.addEventListener('DOMContentLoaded', () => {
-  loadFamilyData();
+  console.log('Página carregada, iniciando árvore...'); // Debug
+  renderFamilyTree();
 });
