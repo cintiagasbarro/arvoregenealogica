@@ -34,14 +34,17 @@ function loadData() {
 }
 
 function update(source) {
-  const treeLayout = d3.tree().size([height, width / 2.5]);
+  const treeLayout = d3.tree().size([height, width - margin.left - margin.right]);
   const treeData = treeLayout(source);
 
   const nodes = treeData.descendants();
   const links = treeData.links();
 
-  // Define posição dos nós com margem à esquerda
-  nodes.forEach(d => d.y = d.depth * 200 + margin.left);
+  // Define posição dos nós com margens adequadas
+  nodes.forEach(d => {
+    d.y = d.depth * 250 + margin.left; // Maior espaçamento entre níveis
+    d.x = d.x + margin.top;
+  });
 
   const svg = d3.select("#tree");
   svg.selectAll("*").remove(); // Limpa antes de redesenhar
@@ -62,7 +65,7 @@ function update(source) {
     .enter()
     .append("g")
     .attr("class", "node")
-    .attr("transform", d => `translate(${source.y0},${source.x0})`)
+    .attr("transform", d => `translate(${source.y0 || margin.left},${source.x0 || height/2})`)
     .on("click", (event, d) => {
       event.stopPropagation(); // Previne bubbling
       
@@ -106,17 +109,18 @@ function update(source) {
     d.y0 = d.y;
   });
 
-  // Atualiza o tamanho do SVG com margens adequadas
-  const boundingBox = svg.node().getBBox();
-  const svgWidth = Math.max(boundingBox.width + margin.left + margin.right + 100, width);
-  const svgHeight = Math.max(boundingBox.height + margin.top + margin.bottom + 100, height);
+  // Calcula o tamanho necessário baseado na posição dos nós
+  const maxX = d3.max(nodes, d => d.x) + margin.bottom;
+  const maxY = d3.max(nodes, d => d.y) + margin.right;
+  const minX = d3.min(nodes, d => d.x) - margin.top;
+  const minY = d3.min(nodes, d => d.y) - margin.left;
+
+  const svgWidth = Math.max(maxY - minY + 100, width);
+  const svgHeight = Math.max(maxX - minX + 100, height);
   
   svg.attr("width", svgWidth);
   svg.attr("height", svgHeight);
   
-  // Atualiza também o viewBox para garantir que tudo seja visível
-  svg.attr("viewBox", `0 0 ${svgWidth} ${svgHeight}`);
-
   // Atualiza o estado atual
   currentRoot = source;
 }
