@@ -94,11 +94,13 @@ function update(source) {
   node.append("circle")
     .attr("r", 6)
     .attr("fill", d => {
-      // Destaca nós que podem expandir (têm filhos)
-      if (d.children || d._children) {
-        return "#007BFF"; // Azul para nós com filhos
+      // Destaca o nó atual, nós com filhos e folhas
+      if (d === currentRoot) {
+        return "#dc3545"; // Vermelho para nó atual (clique = volta)
+      } else if (d.children || d._children) {
+        return "#007BFF"; // Azul para nós com filhos (clique = navega para frente)
       } else {
-        return "#28a745"; // Verde para folhas (clique volta)
+        return "#28a745"; // Verde para folhas (clique = volta)
       }
     });
 
