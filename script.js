@@ -1,6 +1,6 @@
 const width = 2000;
 const height = 1000;
-const margin = {top: 20, right: 90, bottom: 30, left: 150}; // Margem maior à esquerda
+const margin = {top: 20, right: 300, bottom: 30, left: 150}; // Margem maior à direita também
 
 let currentRoot = null;
 let navigationStack = []; // Stack para navegação
