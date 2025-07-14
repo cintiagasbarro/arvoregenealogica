@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Árvore Genealógica - Eurípedes e Marta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+        
+        .controls {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .control-btn {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 10px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        
+        .family-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .member-button {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            text-align: left;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .generation-0 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+        .generation-1 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            margin-left: 30px;
+        }
+        
+        .generation-2 {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            margin-left: 60px;
+        }
+        
+        .generation-3 {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: #2c3e50;
+            margin-left: 90px;
+        }
+        
+        .generation-4 {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: #2c3e50;
+            margin-left: 120px;
+        }
+        
+        .generation-5 {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            color: #2c3e50;
+            margin-left: 150px;
+        }
+        
+        .generation-6 {
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+            color: #2c3e50;
+            margin-left: 180px;
+        }
+        
+        .generation-7 {
+            background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+            color: white;
+            margin-left: 210px;
+        }
+        
+        .member-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .has-children::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .expanded::after {
+            content: '−';
+        }
+        
+        .children-container {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+        }
+        
+        .children-container.show {
+            max-height: 5000px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Árvore Genealógica: Eurípedes e Marta</h1>
+    
+    <div class="controls">
+        <button class="control-btn" onclick="collapseAll()">Fechar Tudo</button>
+        <button class="control-btn" onclick="expandAll()">Abrir Tudo</button>
+    </div>
+
+    <div class="family-container">
+        <div id="family-tree">
+            <!-- Árvore será inserida aqui -->
+        </div>
+    </div>
+
+    <script>
+        // Log para debug
+        console.log('Script iniciado');
+        
+        // Árvore Genealógica Real: Eurípedes e Marta
+        var familyData = {
+            name: "Eurípedes e Marta",
+            children: [
+                {
+                    name: "1. Maria (Falecida) e Bernardo (Falecido)",
+                    children: [
+                        {
+                            name: "1.1. Maria de Lourdes (Falecida) e Cristiano (Falecido)",
+                            children: [
+                                {
+                                    name: "1.1.1. Pedro Henrique (Falecido) e Edmeia (Falecida)",
+                                    children: [
+                                        {
+                                            name: "1.1.1.1. Mário Henrique e Viviany",
+                                            children: [
+                                                {name: "1.1.1.1.1. Ana Luiza"},
+                                                {name: "1.1.1.1.2. Maria Eduarda"}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "1.2. Iêda e José Paulo",
+                            children: [
+                                {name: "1.2.1. Júnia e Fabrício"},
+                                {
+                                    name: "1.2.2. Marcelo (Falecido) e Rosana",
+                                    children: [
+                                        {
+                                            name: "1.2.2.1. Juliana (Mãe: Tércia)",
+                                            children: [
+                                                {name: "1.2.2.1.1. Kauê"}
+                                            ]
+                                        },
+                                        {
+                                            name: "1.2.2.2. Joana (Mãe: Tércia) e Bruno",
+                                            children: [
+                                                {name: "1.2.2.2.1. João"}
+                                            ]
+                                        },
+                                        {name: "1.2.2.3. Marcela (Mãe: Cíntia)"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "1.3. Marcos René (Falecido) e Ernestina (Falecida)",
+                            children: [
+                                {
+                                    name: "1.3.1. Letícia (Falecida) e Adilson",
+                                    children: [
+                                        {
+                                            name: "1.3.1.1. Ana Paula e Warren",
+                                            children: [
+                                                {name: "1.3.1.1.1. Laura"},
+                                                {name: "1.3.1.1.2. Maphew"}
+                                            ]
+                                        },
+                                        {
+                                            name: "1.3.1.2. Júnior e Flávia",
+                                            children: [
+                                                {name: "1.3.1.2.1. Ana Flávia"},
+                                                {name: "1.3.1.2.2. Lucas"}
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    name: "1.3.2. Patrícia e Flávio (Falecido)",
+                                    children: [
+                                        {name: "1.3.2.1. Ana Cláudia"},
+                                        {name: "1.3.2.2. Renato"}
+                                    ]
+                                },
+                                {name: "1.3.3. Marisa e José Renato (Falecido)"}
+                            ]
+                        },
+                        {
+                            name: "1.4. José Eurípedes (Falecido) e Iraci",
+                            children: [
+                                {name: "1.4.1. Bernardo José (Mãe: Lucíola) e Maria de Lourdes"},
+                                {
+                                    name: "1.4.2. Cláudia (Mãe: Lucíola) e Múcio",
+                                    children: [
+                                        {name: "1.4.2.1. Marta"},
+                                        {name: "1.4.2.2. Antônio"}
+                                    ]
+                                },
+                                {
+                                    name: "1.4.3. Luciana (Mãe: Lucíola) e Sérgio",
+                                    children: [
+                                        {name: "1.4.3.1. Henrique"}
+                                    ]
+                                },
+                                {name: "1.4.4. Guilherme (Falecido)"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "2. Rita (Falecida) e Afonso (Falecido)",
+                    children: [
+                        {
+                            name: "2.1. Marta (Falecida) e Ivan (Falecido)",
+                            children: [
+                                {name: "2.1.1. Maria Cristina (Falecida) e Alexandre (Falecido)"},
+                                {
+                                    name: "2.1.2. Cláudia e Frederico",
+                                    children: [
+                                        {name: "2.1.2.1. Rafael"},
+                                        {name: "2.1.2.2. Sandra"},
+                                        {name: "2.1.2.3. Alexandre"}
+                                    ]
+                                },
+                                {
+                                    name: "2.1.3. Ivan (Falecido) e Rose",
+                                    children: [
+                                        {name: "2.1.3.1. Gisele"},
+                                        {name: "2.1.3.2. Ivan"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "2.2. Ângela (Falecida) e José Henrique (Falecido)",
+                            children: [
+                                {name: "2.2.1. Eduardo e Denise"},
+                                {name: "2.2.2. Sérgio"}
+                            ]
+                        },
+                        {
+                            name: "2.3. Heloísa e Anchieta",
+                            children: [
+                                {name: "2.3.1. Rodrigo"},
+                                {
+                                    name: "2.3.2. Marcelo e Viviane",
+                                    children: [
+                                        {name: "2.3.2.1. Marcela"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "2.4. Fernando (Falecido) e Marta",
+                            children: [
+                                {
+                                    name: "2.4.1. Valéria e Valério (Falecido)",
+                                    children: [
+                                        {name: "2.4.1.1. Marcelo"}
+                                    ]
+                                },
+                                {
+                                    name: "2.4.2. Eliane e André",
+                                    children: [
+                                        {name: "2.4.2.1. Fernando e Emily"},
+                                        {name: "2.4.2.2. Clara e Thiago"}
+                                    ]
+                                },
+                                {name: "2.4.3. Vítor (Lão)"},
+                                {
+                                    name: "2.4.4. Ricardo (Falecido) e Cristiane",
+                                    children: [
+                                        {name: "2.4.4.1. Bernardo"}
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "3. Nazareth (Falecida) e Maurílio (Falecido)",
+                    children: [
+                        {
+                            name: "3.1. Marília e Aníbal (Falecido)",
+                            children: [
+                                {name: "3.1.1. Flávia e Thaytson"},
+                                {
+                                    name: "3.1.2. Luciana e J. Cláudio",
+                                    children: [
+                                        {name: "3.1.2.1. Mariana"},
+                                        {name: "3.1.2.2. Carolina"}
+                                    ]
+                                },
+                                {
+                                    name: "3.1.3. Henrique (Falecido) e Adriana",
+                                    children: [
+                                        {name: "3.1.3.1. Bruno"},
+                                        {name: "3.1.3.2. Felipe"}
+                                    ]
+                                },
+                                {name: "3.1.4. Leonardo e Cláudia"},
+                                {name: "3.1.5. Carolina"},
+                                {
+                                    name: "3.1.6. Maurílio e Andréia",
+                                    children: [
+                                        {name: "3.1.6.1. Lucas Antônio"},
+                                        {name: "3.1.6.2. Pedro"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "3.2. Yssmália (Falecida) e Nilo (Falecido)",
+                            children: [
+                                {
+                                    name: "3.2.1. Cristina e Luís Henrique",
+                                    children: [
+                                        {
+                                            name: "3.2.1.1. Thiago e Ana Luísa",
+                                            children: [
+                                                {name: "3.2.1.1.1. Clara"},
+                                                {name: "3.2.1.1.2. Matheus"}
+                                            ]
+                                        },
+                                        {name: "3.2.1.2. Henrique"},
+                                        {
+                                            name: "3.2.1.3. Luíza e Bruno",
+                                            children: [
+                                                {name: "3.2.1.3.1. Leonardo"}
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    name: "3.2.2. Beatriz e José",
+                                    children: [
+                                        {
+                                            name: "3.2.2.1. Daniel (Pai: Michel) e Isabela",
+                                            children: [
+                                                {name: "3.2.2.1.1. Alice"}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {name: "3.3. Cláudio Luiz"},
+                        {
+                            name: "3.4. Afonso Cláudio (Falecido) e Marina (Falecida)",
+                            children: [
+                                {
+                                    name: "3.4.1. Maurílio e Marcele",
+                                    children: [
+                                        {name: "3.4.1.1. Júlia"},
+                                        {name: "3.4.1.2. Túlio"},
+                                        {name: "3.4.1.3. Breno"}
+                                    ]
+                                },
+                                {
+                                    name: "3.4.2. Fabiana e Patrícia",
+                                    children: [
+                                        {name: "3.4.2.1. Heitor"}
+                                    ]
+                                },
+                                {name: "3.4.3. Geraldo"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "4. João e Celuta",
+                    children: [
+                        {
+                            name: "4.1. Tereza Lúcia e Cid (Falecido)",
+                            children: [
+                                {
+                                    name: "4.1.1. Frederico e Andréia",
+                                    children: [
+                                        {name: "4.1.1.1. Ana Luíza"},
+                                        {name: "4.1.1.2. Thiago"}
+                                    ]
+                                },
+                                {
+                                    name: "4.1.2. Christiana e João Henrique",
+                                    children: [
+                                        {name: "4.1.2.1. Gabriela"},
+                                        {name: "4.1.2.2. Vitória"}
+                                    ]
+                                },
+                                {
+                                    name: "4.1.3. Eduardo e Denise",
+                                    children: [
+                                        {name: "4.1.3.1. Arthur"}
+                                    ]
+                                },
+                                {name: "4.1.4. Mariana"}
+                            ]
+                        },
+                        {
+                            name: "4.2. Eurípedes e Tânia",
+                            children: [
+                                {
+                                    name: "4.2.1. Adriana e William",
+                                    children: [
+                                        {name: "4.2.1.1. Igor"},
+                                        {name: "4.2.1.2. Felipe"}
+                                    ]
+                                },
+                                {
+                                    name: "4.2.2. Eurípedes Jr. e Hélvia",
+                                    children: [
+                                        {name: "4.2.2.1. Maria Eduarda"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "4.3. Flávio (Falecido) e Silvia",
+                            children: [
+                                {name: "4.3.1. Juliana"},
+                                {
+                                    name: "4.3.2. Ana Flávia",
+                                    children: [
+                                        {name: "4.3.2.1. Iago (Pai: Chimicatti)"}
+                                    ]
+                                },
+                                {
+                                    name: "4.3.3. Marcelo e Lúcia",
+                                    children: [
+                                        {name: "4.3.3.1. Rodrigo"}
+                                    ]
+                                },
+                                {name: "4.3.4. Flávio Henrique e Lilian"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "5. Geraldo e Cármem",
+                    children: [
+                        {
+                            name: "5.1. Maria do Carmo e Miguel",
+                            children: [
+                                {
+                                    name: "5.1.1. Maria do Carmo e Rogério (Falecido)",
+                                    children: [
+                                        {name: "5.1.1.1. Izabela"},
+                                        {
+                                            name: "5.1.1.2. Fabiana",
+                                            children: [
+                                                {name: "5.1.1.2.1. Gabriel (Pai: Elson)"},
+                                                {name: "5.1.1.2.2. Luíza (Pai: Elson)"}
+                                            ]
+                                        },
+                                        {name: "5.1.1.3. Rogério"}
+                                    ]
+                                },
+                                {
+                                    name: "5.1.2. Andréa e Gerson (Falecido)",
+                                    children: [
+                                        {name: "5.1.2.1. Gerson e Valentina"},
+                                        {
+                                            name: "5.1.2.2. Heitor e Helena",
+                                            children: [
+                                                {name: "5.1.2.2.1. João Vítor"},
+                                                {name: "5.1.2.2.2. Luiza"}
+                                            ]
+                                        },
+                                        {name: "5.1.2.3. Marcela e Eduardo"}
+                                    ]
+                                },
+                                {
+                                    name: "5.1.3. Catarina e José Inácio (Falecido)",
+                                    children: [
+                                        {name: "5.1.3.1. Gabriela"}
+                                    ]
+                                },
+                                {
+                                    name: "5.1.4. Fernanda (Falecida) e Francisco",
+                                    children: [
+                                        {name: "5.1.4.1. Ana Paula"}
+                                    ]
+                                },
+                                {
+                                    name: "5.1.5. Miguel Filho e Cíntia",
+                                    children: [
+                                        {name: "5.1.5.1. Júlia"},
+                                        {name: "5.1.5.2. Miguel Neto"}
+                                    ]
+                                },
+                                {name: "5.1.6. Geraldo (Falecido)"},
+                                {
+                                    name: "5.1.7. Luciana (Falecida) e Honor",
+                                    children: [
+                                        {name: "5.1.7.1. Leonardo (Pai: Leonardo)"},
+                                        {name: "5.1.7.2. Lucas"},
+                                        {name: "5.1.7.3. Gustavo"},
+                                        {name: "5.1.7.4. Marcelo"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "5.2. Maria Carmem e Felipe",
+                            children: [
+                                {
+                                    name: "5.2.1. Rachel e Paulo",
+                                    children: [
+                                        {name: "5.2.1.1. Bárbara"}
+                                    ]
+                                },
+                                {
+                                    name: "5.2.2. Juliana e Brener",
+                                    children: [
+                                        {name: "5.2.2.1. Thiago"},
+                                        {name: "5.2.2.2. Arthur"}
+                                    ]
+                                },
+                                {
+                                    name: "5.2.3. Patrícia",
+                                    children: [
+                                        {name: "5.2.3.1. Luísa (Pai: Henrique)"}
+                                    ]
+                                },
+                                {
+                                    name: "5.2.4. Renata e Paulo Henrique",
+                                    children: [
+                                        {name: "5.2.4.1. Maria Eduarda"},
+                                        {name: "5.2.4.2. Felipe"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "5.3. Sérgio (Falecido) e Maria Eleci",
+                            children: [
+                                {
+                                    name: "5.3.1. Aline e Paulo",
+                                    children: [
+                                        {name: "5.3.1.1. Victor"},
+                                        {name: "5.3.1.2. Júlia"},
+                                        {name: "5.3.1.3. Igor"}
+                                    ]
+                                },
+                                {
+                                    name: "5.3.2. Heitor",
+                                    children: [
+                                        {name: "5.3.2.1. Miguel (Mãe: Fabiana)"}
+                                    ]
+                                },
+                                {
+                                    name: "5.3.3. Sérgio e Patrícia",
+                                    children: [
+                                        {name: "5.3.3.1. Matheus"}
+                                    ]
+                                },
+                                {
+                                    name: "5.3.4. Leandro e Jacqueline",
+                                    children: [
+                                        {name: "5.3.4.1. Gabriel"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "5.4. Sonia Maria e Luiz Carlos",
+                            children: [
+                                {
+                                    name: "5.4.1. Guilherme e Júlia",
+                                    children: [
+                                        {name: "5.4.1.1. Maria Eduarda"}
+                                    ]
+                                },
+                                {
+                                    name: "5.4.2. André e Fabiane",
+                                    children: [
+                                        {
+                                            name: "5.4.2.1. Carolina (Mãe: Cristiane) e Alexander",
+                                            children: [
+                                                {name: "5.4.2.1.1. Bernardo"},
+                                                {name: "5.4.2.1.2. Eliza"}
+                                            ]
+                                        },
+                                        {name: "5.4.2.2. Ana Clara (Mãe: Cristiane)"},
+                                        {name: "5.4.2.3. João Pedro (Mãe: Cristiane)"}
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "6. Evaristo (Falecido) e Enny (Falecida)",
+                    children: [
+                        {
+                            name: "6.1. Leny e José Alfredo",
+                            children: [
+                                {
+                                    name: "6.1.1. Alexandre e Vania",
+                                    children: [
+                                        {name: "6.1.1.1. Leticia (Mãe: Eliane)"}
+                                    ]
+                                },
+                                {
+                                    name: "6.1.2. Juliana e Marcelo",
+                                    children: [
+                                        {name: "6.1.2.1. Alex"}
+                                    ]
+                                },
+                                {
+                                    name: "6.1.3. Adriana e Gilberto",
+                                    children: [
+                                        {name: "6.1.3.1. Arthur"},
+                                        {name: "6.1.3.2. Alberto"}
+                                    ]
+                                },
+                                {
+                                    name: "6.1.4. Maurício e Poliana",
+                                    children: [
+                                        {name: "6.1.4.1. Benjamin"},
+                                        {name: "6.1.4.2. Mel"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "6.2. Evaristo Antônio (Falecido)",
+                            children: [
+                                {
+                                    name: "6.2.1. Evaristo (Mãe: Aparecida) e Aline",
+                                    children: [
+                                        {name: "6.2.1.1. Evaristo"},
+                                        {name: "6.2.1.2. Manoel"}
+                                    ]
+                                },
+                                {
+                                    name: "6.2.2. José Flávio (Mãe: Aparecida) e Alessandra",
+                                    children: [
+                                        {name: "6.2.2.1. Laura"}
+                                    ]
+                                },
+                                {
+                                    name: "6.2.3. Daniela (Mãe: Aparecida) e Henrique",
+                                    children: [
+                                        {name: "6.2.3.1. Bernardo"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "6.3. Lenita (Falecida) e Roberto (Falecido)",
+                            children: [
+                                {
+                                    name: "6.3.1. Renato e Nayana",
+                                    children: [
+                                        {name: "6.3.1.1. Miguel (Mãe: Nara)"},
+                                        {name: "6.3.1.2. Júlia (Mãe: Nara)"}
+                                    ]
+                                },
+                                {
+                                    name: "6.3.2. Leonardo",
+                                    children: [
+                                        {name: "6.3.2.1. Ana Flávia (Mãe: Flávia)"},
+                                        {name: "6.3.2.2. Isabela (Mãe: Flávia)"},
+                                        {name: "6.3.2.3. Fernanda (Mãe: Flávia)"}
+                                    ]
+                                },
+                                {
+                                    name: "6.3.3. Gustavo e Marina",
+                                    children: [
+                                        {name: "6.3.3.1. Manuela"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "6.4. Rogério e Sonia",
+                            children: [
+                                {
+                                    name: "6.4.1. Alice e Wagner",
+                                    children: [
+                                        {name: "6.4.1.1. Catarina"},
+                                        {name: "6.4.1.2. Mateus"},
+                                        {name: "6.4.1.3. Beatriz"}
+                                    ]
+                                },
+                                {
+                                    name: "6.4.2. Luiza e Gil Eduardo",
+                                    children: [
+                                        {name: "6.4.2.1. Íris"},
+                                        {name: "6.4.2.2. Gil Gabriel"}
+                                    ]
+                                },
+                                {
+                                    name: "6.4.3. Breno e Monica",
+                                    children: [
+                                        {name: "6.4.3.1. Lucas"},
+                                        {name: "6.4.3.2. Lis"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "6.5. Virgílio",
+                            children: [
+                                {
+                                    name: "6.5.1. Nicolas (Mãe: Mara)",
+                                    children: [
+                                        {name: "6.5.1.1. Pedro"},
+                                        {name: "6.5.1.2. Cristiano"}
+                                    ]
+                                },
+                                {
+                                    name: "6.5.2. Gabriel e Bruna",
+                                    children: [
+                                        {name: "6.5.2.1. Leonardo"}
+                                    ]
+                                },
+                                {
+                                    name: "6.5.3. Anaís (Mãe: Ana Esther)",
+                                    children: [
+                                        {name: "6.5.3.1. Aurora (Pai: Thiago)"}
+                                    ]
+                                },
+                                {name: "6.5.4. Tácio (Mãe: Dalgiza)"}
+                            ]
+                        },
+                        {
+                            name: "6.6. Lenice e João Guilherme",
+                            children: [
+                                {
+                                    name: "6.6.1. Cláudia Flávio",
+                                    children: [
+                                        {name: "6.6.1.1. Guilherme"}
+                                    ]
+                                },
+                                {
+                                    name: "6.6.2. Simone e Guilherme",
+                                    children: [
+                                        {name: "6.6.2.1. Laís"},
+                                        {name: "6.6.2.2. Téo"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "6.7. Evandro e Suely",
+                            children: [
+                                {name: "6.7.1. André (Mãe: Rosana) e Gustavo"},
+                                {
+                                    name: "6.7.2. Cíntia (Mãe: Rosana) e Renata",
+                                    children: [
+                                        {name: "6.7.2.1. João Gabriel"}
+                                    ]
+                                },
+                                {name: "6.7.3. Carolina (Mãe: Rosana)"},
+                                {
+                                    name: "6.7.4. Bruno (Mãe: Rosana) e Flávia",
+                                    children: [
+                                        {name: "6.7.4.1. Maria Vitória (Mãe: Adélia)"},
+                                        {name: "6.7.4.2. Giovana"},
+                                        {name: "6.7.4.3. Antônio"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "6.8. Maria Regina",
+                            children: [
+                                {name: "6.8.1. Tomáz e Gabriela (Pai: Flamarion)"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "7. Vicente (Falecido) e Tereza (Falecida)",
+                    children: [
+                        {
+                            name: "7.1. Cássio e Cláudia",
+                            children: [
+                                {
+                                    name: "7.1.1. Gustavo e Débora",
+                                    children: [
+                                        {name: "7.1.1.1. Gustavo"}
+                                    ]
+                                },
+                                {
+                                    name: "7.1.2. Marcela e Rômulo",
+                                    children: [
+                                        {name: "7.1.2.1. Lara"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "7.2. Marta",
+                            children: [
+                                {
+                                    name: "7.2.1. Alberto (Pai: Alberto) e Erika",
+                                    children: [
+                                        {name: "7.2.1.1. Laura"},
+                                        {name: "7.2.1.2. Augusto"}
+                                    ]
+                                },
+                                {
+                                    name: "7.2.2. Rachel e André",
+                                    children: [
+                                        {
+                                            name: "7.2.2.1. Mariana e Jesper",
+                                            children: [
+                                                {name: "7.2.2.1.1. Tereza"},
+                                                {name: "7.2.2.1.2. Kaj"}
+                                            ]
+                                        },
+                                        {name: "7.2.2.2. Daniel"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {name: "7.3. Adriano"},
+                        {
+                            name: "7.4. Myriam",
+                            children: [
+                                {name: "7.4.1. Marina (Pai: Maurício)"},
+                                {name: "7.4.2. Alice (Pai: Maurício)"},
+                                {name: "7.4.3. Sofia (Pai: Maurício)"}
+                            ]
+                        }
+                    ]
+                }
+            ]
+        };
+        
+        console.log('Dados carregados:', familyData);
+        
+        // Função para criar botão
+        function createButton(member, generation) {
+            console.log('Criando botão para:', member.name);
+            
+            var container = document.createElement('div');
+            
+            var button = document.createElement('button');
+            button.className = 'member-button generation-' + generation;
+            button.textContent = member.name;
+            
+            if (member.children && member.children.length > 0) {
+                button.className += ' has-children';
+                
+                button.onclick = function() {
+                    console.log('Clique em:', member.name);
+                    toggleChildren(container, member, generation);
+                };
+            }
+            
+            container.appendChild(button);
+            return container;
+        }
+        
+        // Função para alternar filhos
+        function toggleChildren(container, member, generation) {
+            var childrenDiv = container.querySelector('.children-container');
+            
+            if (!childrenDiv) {
+                // Criar div de filhos
+                childrenDiv = document.createElement('div');
+                childrenDiv.className = 'children-container';
+                
+                // Adicionar filhos
+                for (var i = 0; i < member.children.length; i++) {
+                    var childContainer = createButton(member.children[i], generation + 1);
+                    childrenDiv.appendChild(childContainer);
+                }
+                
+                container.appendChild(childrenDiv);
+            }
+            
+            var button = container.querySelector('.member-button');
+            
+            if (childrenDiv.classList.contains('show')) {
+                childrenDiv.classList.remove('show');
+                button.classList.remove('expanded');
+            } else {
+                childrenDiv.classList.add('show');
+                button.classList.add('expanded');
+            }
+        }
+        
+        // Função para colapsar tudo
+        function collapseAll() {
+            var allContainers = document.querySelectorAll('.children-container');
+            var allButtons = document.querySelectorAll('.member-button.has-children');
+            
+            for (var i = 0; i < allContainers.length; i++) {
+                allContainers[i].classList.remove('show');
+            }
+            
+            for (var i = 0; i < allButtons.length; i++) {
+                allButtons[i].classList.remove('expanded');
+            }
+        }
+        
+        // Função para expandir tudo
+        function expandAll() {
+            var allButtons = document.querySelectorAll('.member-button.has-children');
+            
+            for (var i = 0; i < allButtons.length; i++) {
+                if (!allButtons[i].classList.contains('expanded')) {
+                    allButtons[i].click();
+                }
+            }
+        }
+        
+        // Inicializar
+        function init() {
+            console.log('Inicializando árvore');
+            
+            var container = document.getElementById('family-tree');
+            if (!container) {
+                console.error('Container não encontrado!');
+                return;
+            }
+            
+            container.innerHTML = '';
+            
+            var rootContainer = createButton(familyData, 0);
+            container.appendChild(rootContainer);
+            
+            console.log('Árvore criada com sucesso!');
+        }
+        
+        // Aguardar DOM carregar
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', init);
+        } else {
+            init();
+        }
+        
+        console.log('Script carregado completamente');
+    </script>
+</body>
+</html>
