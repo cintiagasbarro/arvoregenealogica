@@ -922,16 +922,25 @@
             var button = document.createElement('button');
             button.className = 'member-button generation-' + generation;
             
-            // Adiciona classe has-children apenas se tem filhos
+            // Cria o span para o texto
+            var textSpan = document.createElement('span');
+            textSpan.className = 'button-text';
+            textSpan.textContent = member.name;
+            button.appendChild(textSpan);
+            
+            // Adiciona símbolo apenas se tem filhos
             if (member.children && member.children.length > 0) {
                 button.classList.add('has-children');
-                button.textContent = member.name + ' [+]';  // Adiciona + diretamente no texto
+                
+                // Cria o span para o símbolo
+                var symbolSpan = document.createElement('span');
+                symbolSpan.className = 'button-symbol';
+                symbolSpan.textContent = '+';
+                button.appendChild(symbolSpan);
                 
                 button.onclick = function() {
-                    toggleChildren(container, member, generation, button);
+                    toggleChildren(container, member, generation, button, symbolSpan);
                 };
-            } else {
-                button.textContent = member.name;  // Sem símbolos para botões sem filhos
             }
             
             container.appendChild(button);
@@ -939,7 +948,7 @@
         }
         
         // Função para alternar filhos
-        function toggleChildren(container, member, generation, button) {
+        function toggleChildren(container, member, generation, button, symbolSpan) {
             var childrenDiv = container.querySelector('.children-container');
             
             if (!childrenDiv) {
@@ -960,11 +969,11 @@
             if (childrenDiv.classList.contains('show')) {
                 childrenDiv.classList.remove('show');
                 button.classList.remove('expanded');
-                button.textContent = member.name + ' [+]';  // Mostra + quando colapsado
+                symbolSpan.textContent = '+';  // Mostra + quando colapsado
             } else {
                 childrenDiv.classList.add('show');
                 button.classList.add('expanded');
-                button.textContent = member.name + ' [−]';  // Mostra - quando expandido
+                symbolSpan.textContent = '−';  // Mostra - quando expandido
             }
         }
         
