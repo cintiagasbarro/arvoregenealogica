@@ -50,7 +50,9 @@
         }
         
         .member-button {
-            display: block;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             width: 100%;
             padding: 15px;
             margin-bottom: 10px;
@@ -61,6 +63,25 @@
             text-align: left;
             transition: all 0.3s ease;
             position: relative;
+        }
+        
+        .button-text {
+            flex: 1;
+            text-align: left;
+        }
+        
+        .button-symbol {
+            font-size: 18px;
+            font-weight: bold;
+            margin-left: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid currentColor;
         }
         
         .generation-0 {
