@@ -124,9 +124,17 @@
             right: 20px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: 18px;
+            font-size: 20px;
             font-weight: bold;
             color: inherit;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            border: 2px solid currentColor;
         }
         
         /* Símbolo - para botões com filhos (expandidos) */
@@ -136,7 +144,12 @@
         
         /* Garantir que botões sem filhos não tenham símbolo */
         .member-button:not(.has-children)::after {
-            display: none;
+            display: none !important;
+        }
+        
+        /* Ajustar padding do botão para dar espaço ao símbolo */
+        .has-children {
+            padding-right: 60px !important;
         }
         
         .children-container {
