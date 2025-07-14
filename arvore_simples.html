@@ -139,84 +139,172 @@
         // Log para debug
         console.log('Script iniciado');
         
-        // Dados da família COMPLETA
+        // Árvore Genealógica Real: Eurípedes e Marta
         var familyData = {
             name: "Eurípedes e Marta",
             children: [
                 {
-                    name: "João Silva",
+                    name: "1. Maria (Falecida) e Bernardo (Falecido)",
                     children: [
                         {
-                            name: "Pedro Silva",
+                            name: "1.1. Maria de Lourdes (Falecida) e Cristiano (Falecido)",
                             children: [
                                 {
-                                    name: "Ana Silva",
+                                    name: "1.1.1. Pedro Henrique (Falecido) e Edmeia (Falecida)",
                                     children: [
-                                        {name: "Miguel Silva"},
-                                        {name: "Sofia Silva"},
-                                        {name: "Rafael Silva"}
-                                    ]
-                                },
-                                {
-                                    name: "Carlos Silva",
-                                    children: [
-                                        {name: "Isabella Silva"},
-                                        {name: "Leonardo Silva"}
-                                    ]
-                                },
-                                {
-                                    name: "Beatriz Silva",
-                                    children: [
-                                        {name: "Giovanna Silva"},
-                                        {name: "Enzo Silva"},
-                                        {name: "Valentina Silva"}
+                                        {
+                                            name: "1.1.1.1. Mário Henrique e Viviany",
+                                            children: [
+                                                {name: "1.1.1.1.1. Ana Luiza"},
+                                                {name: "1.1.1.1.2. Maria Eduarda"}
+                                            ]
+                                        }
                                     ]
                                 }
                             ]
                         },
                         {
-                            name: "Maria Silva",
+                            name: "1.2. Iêda e José Paulo",
                             children: [
+                                {name: "1.2.1. Júnia e Fabrício"},
                                 {
-                                    name: "José Silva",
+                                    name: "1.2.2. Marcelo (Falecido) e Rosana",
                                     children: [
-                                        {name: "Alice Silva"},
-                                        {name: "Arthur Silva"}
-                                    ]
-                                },
-                                {
-                                    name: "Antônia Silva",
-                                    children: [
-                                        {name: "Helena Silva"},
-                                        {name: "Theo Silva"},
-                                        {name: "Laura Silva"}
-                                    ]
-                                },
-                                {
-                                    name: "Francisco Silva",
-                                    children: [
-                                        {name: "Manuela Silva"},
-                                        {name: "Pedro Henrique Silva"}
+                                        {
+                                            name: "1.2.2.1. Juliana (Mãe: Tércia)",
+                                            children: [
+                                                {name: "1.2.2.1.1. Kauê"}
+                                            ]
+                                        },
+                                        {
+                                            name: "1.2.2.2. Joana (Mãe: Tércia) e Bruno",
+                                            children: [
+                                                {name: "1.2.2.2.1. João"}
+                                            ]
+                                        },
+                                        {name: "1.2.2.3. Marcela (Mãe: Cíntia)"}
                                     ]
                                 }
                             ]
                         },
                         {
-                            name: "Roberto Silva",
+                            name: "1.3. Marcos René (Falecido) e Ernestina (Falecida)",
                             children: [
                                 {
-                                    name: "Camila Silva",
+                                    name: "1.3.1. Letícia (Falecida) e Adilson",
                                     children: [
-                                        {name: "Nicolas Silva"},
-                                        {name: "Cecília Silva"}
+                                        {
+                                            name: "1.3.1.1. Ana Paula e Warren",
+                                            children: [
+                                                {name: "1.3.1.1.1. Laura"},
+                                                {name: "1.3.1.1.2. Maphew"}
+                                            ]
+                                        },
+                                        {
+                                            name: "1.3.1.2. Júnior e Flávia",
+                                            children: [
+                                                {name: "1.3.1.2.1. Ana Flávia"},
+                                                {name: "1.3.1.2.2. Lucas"}
+                                            ]
+                                        }
                                     ]
                                 },
                                 {
-                                    name: "Eduardo Silva",
+                                    name: "1.3.2. Patrícia e Flávio (Falecido)",
                                     children: [
-                                        {name: "Lara Silva"},
-                                        {name: "Gabriel Silva"},
-                                        {name: "Mariana Silva"}
+                                        {name: "1.3.2.1. Ana Cláudia"},
+                                        {name: "1.3.2.2. Renato"}
+                                    ]
+                                },
+                                {name: "1.3.3. Marisa e José Renato (Falecido)"}
+                            ]
+                        },
+                        {
+                            name: "1.4. José Eurípedes (Falecido) e Iraci",
+                            children: [
+                                {name: "1.4.1. Bernardo José (Mãe: Lucíola) e Maria de Lourdes"},
+                                {
+                                    name: "1.4.2. Cláudia (Mãe: Lucíola) e Múcio",
+                                    children: [
+                                        {name: "1.4.2.1. Marta"},
+                                        {name: "1.4.2.2. Antônio"}
+                                    ]
+                                },
+                                {
+                                    name: "1.4.3. Luciana (Mãe: Lucíola) e Sérgio",
+                                    children: [
+                                        {name: "1.4.3.1. Henrique"}
+                                    ]
+                                },
+                                {name: "1.4.4. Guilherme (Falecido)"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "2. Rita (Falecida) e Afonso (Falecido)",
+                    children: [
+                        {
+                            name: "2.1. Marta (Falecida) e Ivan (Falecido)",
+                            children: [
+                                {name: "2.1.1. Maria Cristina (Falecida) e Alexandre (Falecido)"},
+                                {
+                                    name: "2.1.2. Cláudia e Frederico",
+                                    children: [
+                                        {name: "2.1.2.1. Rafael"},
+                                        {name: "2.1.2.2. Sandra"},
+                                        {name: "2.1.2.3. Alexandre"}
+                                    ]
+                                },
+                                {
+                                    name: "2.1.3. Ivan (Falecido) e Rose",
+                                    children: [
+                                        {name: "2.1.3.1. Gisele"},
+                                        {name: "2.1.3.2. Ivan"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "2.2. Ângela (Falecida) e José Henrique (Falecido)",
+                            children: [
+                                {name: "2.2.1. Eduardo e Denise"},
+                                {name: "2.2.2. Sérgio"}
+                            ]
+                        },
+                        {
+                            name: "2.3. Heloísa e Anchieta",
+                            children: [
+                                {name: "2.3.1. Rodrigo"},
+                                {
+                                    name: "2.3.2. Marcelo e Viviane",
+                                    children: [
+                                        {name: "2.3.2.1. Marcela"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "2.4. Fernando (Falecido) e Marta",
+                            children: [
+                                {
+                                    name: "2.4.1. Valéria e Valério (Falecido)",
+                                    children: [
+                                        {name: "2.4.1.1. Marcelo"}
+                                    ]
+                                },
+                                {
+                                    name: "2.4.2. Eliane e André",
+                                    children: [
+                                        {name: "2.4.2.1. Fernando e Emily"},
+                                        {name: "2.4.2.2. Clara e Thiago"}
+                                    ]
+                                },
+                                {name: "2.4.3. Vítor (Lão)"},
+                                {
+                                    name: "2.4.4. Ricardo (Falecido) e Cristiane",
+                                    children: [
+                                        {name: "2.4.4.1. Bernardo"}
                                     ]
                                 }
                             ]
@@ -224,71 +312,311 @@
                     ]
                 },
                 {
-                    name: "Maria Santos",
+                    name: "3. Nazareth (Falecida) e Maurílio (Falecido)",
                     children: [
                         {
-                            name: "Paulo Santos",
+                            name: "3.1. Marília e Aníbal (Falecido)",
                             children: [
+                                {name: "3.1.1. Flávia e Thaytson"},
                                 {
-                                    name: "Luiza Santos",
+                                    name: "3.1.2. Luciana e J. Cláudio",
                                     children: [
-                                        {name: "João Pedro Santos"},
-                                        {name: "Maria Eduarda Santos"}
+                                        {name: "3.1.2.1. Mariana"},
+                                        {name: "3.1.2.2. Carolina"}
                                     ]
                                 },
                                 {
-                                    name: "Ricardo Santos",
+                                    name: "3.1.3. Henrique (Falecido) e Adriana",
                                     children: [
-                                        {name: "Isadora Santos"},
-                                        {name: "Lorenzo Santos"},
-                                        {name: "Lívia Santos"}
+                                        {name: "3.1.3.1. Bruno"},
+                                        {name: "3.1.3.2. Felipe"}
+                                    ]
+                                },
+                                {name: "3.1.4. Leonardo e Cláudia"},
+                                {name: "3.1.5. Carolina"},
+                                {
+                                    name: "3.1.6. Maurílio e Andréia",
+                                    children: [
+                                        {name: "3.1.6.1. Lucas Antônio"},
+                                        {name: "3.1.6.2. Pedro"}
                                     ]
                                 }
                             ]
                         },
                         {
-                            name: "Teresa Santos",
+                            name: "3.2. Yssmália (Falecida) e Nilo (Falecido)",
                             children: [
                                 {
-                                    name: "Fernanda Santos",
+                                    name: "3.2.1. Cristina e Luís Henrique",
                                     children: [
-                                        {name: "Davi Santos"},
-                                        {name: "Júlia Santos"}
+                                        {
+                                            name: "3.2.1.1. Thiago e Ana Luísa",
+                                            children: [
+                                                {name: "3.2.1.1.1. Clara"},
+                                                {name: "3.2.1.1.2. Matheus"}
+                                            ]
+                                        },
+                                        {name: "3.2.1.2. Henrique"},
+                                        {
+                                            name: "3.2.1.3. Luíza e Bruno",
+                                            children: [
+                                                {name: "3.2.1.3.1. Leonardo"}
+                                            ]
+                                        }
                                     ]
                                 },
                                 {
-                                    name: "Carlos Santos",
+                                    name: "3.2.2. Beatriz e José",
                                     children: [
-                                        {name: "Emanuelly Santos"},
-                                        {name: "Benjamin Santos"},
-                                        {name: "Yasmin Santos"}
+                                        {
+                                            name: "3.2.2.1. Daniel (Pai: Michel) e Isabela",
+                                            children: [
+                                                {name: "3.2.2.1.1. Alice"}
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {name: "3.3. Cláudio Luiz"},
+                        {
+                            name: "3.4. Afonso Cláudio (Falecido) e Marina (Falecida)",
+                            children: [
+                                {
+                                    name: "3.4.1. Maurílio e Marcele",
+                                    children: [
+                                        {name: "3.4.1.1. Júlia"},
+                                        {name: "3.4.1.2. Túlio"},
+                                        {name: "3.4.1.3. Breno"}
                                     ]
                                 },
                                 {
-                                    name: "Marcela Santos",
+                                    name: "3.4.2. Fabiana e Patrícia",
                                     children: [
-                                        {name: "Matheus Santos"},
-                                        {name: "Rebeca Santos"}
+                                        {name: "3.4.2.1. Heitor"}
+                                    ]
+                                },
+                                {name: "3.4.3. Geraldo"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "4. João e Celuta",
+                    children: [
+                        {
+                            name: "4.1. Tereza Lúcia e Cid (Falecido)",
+                            children: [
+                                {
+                                    name: "4.1.1. Frederico e Andréia",
+                                    children: [
+                                        {name: "4.1.1.1. Ana Luíza"},
+                                        {name: "4.1.1.2. Thiago"}
+                                    ]
+                                },
+                                {
+                                    name: "4.1.2. Christiana e João Henrique",
+                                    children: [
+                                        {name: "4.1.2.1. Gabriela"},
+                                        {name: "4.1.2.2. Vitória"}
+                                    ]
+                                },
+                                {
+                                    name: "4.1.3. Eduardo e Denise",
+                                    children: [
+                                        {name: "4.1.3.1. Arthur"}
+                                    ]
+                                },
+                                {name: "4.1.4. Mariana"}
+                            ]
+                        },
+                        {
+                            name: "4.2. Eurípedes e Tânia",
+                            children: [
+                                {
+                                    name: "4.2.1. Adriana e William",
+                                    children: [
+                                        {name: "4.2.1.1. Igor"},
+                                        {name: "4.2.1.2. Felipe"}
+                                    ]
+                                },
+                                {
+                                    name: "4.2.2. Eurípedes Jr. e Hélvia",
+                                    children: [
+                                        {name: "4.2.2.1. Maria Eduarda"}
                                     ]
                                 }
                             ]
                         },
                         {
-                            name: "André Santos",
+                            name: "4.3. Flávio (Falecido) e Silvia",
                             children: [
+                                {name: "4.3.1. Juliana"},
                                 {
-                                    name: "Patrícia Santos",
+                                    name: "4.3.2. Ana Flávia",
                                     children: [
-                                        {name: "Samuel Santos"},
-                                        {name: "Ana Clara Santos"},
-                                        {name: "João Miguel Santos"}
+                                        {name: "4.3.2.1. Iago (Pai: Chimicatti)"}
                                     ]
                                 },
                                 {
-                                    name: "Bruno Santos",
+                                    name: "4.3.3. Marcelo e Lúcia",
                                     children: [
-                                        {name: "Melissa Santos"},
-                                        {name: "Felipe Santos"}
+                                        {name: "4.3.3.1. Rodrigo"}
+                                    ]
+                                },
+                                {name: "4.3.4. Flávio Henrique e Lilian"}
+                            ]
+                        }
+                    ]
+                },
+                {
+                    name: "5. Geraldo e Cármem",
+                    children: [
+                        {
+                            name: "5.1. Maria do Carmo e Miguel",
+                            children: [
+                                {
+                                    name: "5.1.1. Maria do Carmo e Rogério (Falecido)",
+                                    children: [
+                                        {name: "5.1.1.1. Izabela"},
+                                        {
+                                            name: "5.1.1.2. Fabiana",
+                                            children: [
+                                                {name: "5.1.1.2.1. Gabriel (Pai: Elson)"},
+                                                {name: "5.1.1.2.2. Luíza (Pai: Elson)"}
+                                            ]
+                                        },
+                                        {name: "5.1.1.3. Rogério"}
+                                    ]
+                                },
+                                {
+                                    name: "5.1.2. Andréa e Gerson (Falecido)",
+                                    children: [
+                                        {name: "5.1.2.1. Gerson e Valentina"},
+                                        {
+                                            name: "5.1.2.2. Heitor e Helena",
+                                            children: [
+                                                {name: "5.1.2.2.1. João Vítor"},
+                                                {name: "5.1.2.2.2. Luiza"}
+                                            ]
+                                        },
+                                        {name: "5.1.2.3. Marcela e Eduardo"}
+                                    ]
+                                },
+                                {
+                                    name: "5.1.3. Catarina e José Inácio (Falecido)",
+                                    children: [
+                                        {name: "5.1.3.1. Gabriela"}
+                                    ]
+                                },
+                                {
+                                    name: "5.1.4. Fernanda (Falecida) e Francisco",
+                                    children: [
+                                        {name: "5.1.4.1. Ana Paula"}
+                                    ]
+                                },
+                                {
+                                    name: "5.1.5. Miguel Filho e Cíntia",
+                                    children: [
+                                        {name: "5.1.5.1. Júlia"},
+                                        {name: "5.1.5.2. Miguel Neto"}
+                                    ]
+                                },
+                                {name: "5.1.6. Geraldo (Falecido)"},
+                                {
+                                    name: "5.1.7. Luciana (Falecida) e Honor",
+                                    children: [
+                                        {name: "5.1.7.1. Leonardo (Pai: Leonardo)"},
+                                        {name: "5.1.7.2. Lucas"},
+                                        {name: "5.1.7.3. Gustavo"},
+                                        {name: "5.1.7.4. Marcelo"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "5.2. Maria Carmem e Felipe",
+                            children: [
+                                {
+                                    name: "5.2.1. Rachel e Paulo",
+                                    children: [
+                                        {name: "5.2.1.1. Bárbara"}
+                                    ]
+                                },
+                                {
+                                    name: "5.2.2. Juliana e Brener",
+                                    children: [
+                                        {name: "5.2.2.1. Thiago"},
+                                        {name: "5.2.2.2. Arthur"}
+                                    ]
+                                },
+                                {
+                                    name: "5.2.3. Patrícia",
+                                    children: [
+                                        {name: "5.2.3.1. Luísa (Pai: Henrique)"}
+                                    ]
+                                },
+                                {
+                                    name: "5.2.4. Renata e Paulo Henrique",
+                                    children: [
+                                        {name: "5.2.4.1. Maria Eduarda"},
+                                        {name: "5.2.4.2. Felipe"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "5.3. Sérgio (Falecido) e Maria Eleci",
+                            children: [
+                                {
+                                    name: "5.3.1. Aline e Paulo",
+                                    children: [
+                                        {name: "5.3.1.1. Victor"},
+                                        {name: "5.3.1.2. Júlia"},
+                                        {name: "5.3.1.3. Igor"}
+                                    ]
+                                },
+                                {
+                                    name: "5.3.2. Heitor",
+                                    children: [
+                                        {name: "5.3.2.1. Miguel (Mãe: Fabiana)"}
+                                    ]
+                                },
+                                {
+                                    name: "5.3.3. Sérgio e Patrícia",
+                                    children: [
+                                        {name: "5.3.3.1. Matheus"}
+                                    ]
+                                },
+                                {
+                                    name: "5.3.4. Leandro e Jacqueline",
+                                    children: [
+                                        {name: "5.3.4.1. Gabriel"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "5.4. Sonia Maria e Luiz Carlos",
+                            children: [
+                                {
+                                    name: "5.4.1. Guilherme e Júlia",
+                                    children: [
+                                        {name: "5.4.1.1. Maria Eduarda"}
+                                    ]
+                                },
+                                {
+                                    name: "5.4.2. André e Fabiane",
+                                    children: [
+                                        {
+                                            name: "5.4.2.1. Carolina (Mãe: Cristiane) e Alexander",
+                                            children: [
+                                                {name: "5.4.2.1.1. Bernardo"},
+                                                {name: "5.4.2.1.2. Eliza"}
+                                            ]
+                                        },
+                                        {name: "5.4.2.2. Ana Clara (Mãe: Cristiane)"},
+                                        {name: "5.4.2.3. João Pedro (Mãe: Cristiane)"}
                                     ]
                                 }
                             ]
@@ -296,142 +624,240 @@
                     ]
                 },
                 {
-                    name: "Roberto Oliveira",
+                    name: "6. Evaristo (Falecido) e Enny (Falecida)",
                     children: [
                         {
-                            name: "Marcos Oliveira",
+                            name: "6.1. Leny e José Alfredo",
                             children: [
                                 {
-                                    name: "Lucas Oliveira",
+                                    name: "6.1.1. Alexandre e Vania",
                                     children: [
-                                        {name: "Heitor Oliveira"},
-                                        {name: "Antonella Oliveira"}
+                                        {name: "6.1.1.1. Leticia (Mãe: Eliane)"}
                                     ]
                                 },
                                 {
-                                    name: "Gabriel Oliveira",
+                                    name: "6.1.2. Juliana e Marcelo",
                                     children: [
-                                        {name: "Noah Oliveira"},
-                                        {name: "Ayla Oliveira"},
-                                        {name: "Lucca Oliveira"}
+                                        {name: "6.1.2.1. Alex"}
                                     ]
                                 },
                                 {
-                                    name: "Letícia Oliveira",
+                                    name: "6.1.3. Adriana e Gilberto",
                                     children: [
-                                        {name: "Bernardo Oliveira"},
-                                        {name: "Lavínia Oliveira"}
+                                        {name: "6.1.3.1. Arthur"},
+                                        {name: "6.1.3.2. Alberto"}
+                                    ]
+                                },
+                                {
+                                    name: "6.1.4. Maurício e Poliana",
+                                    children: [
+                                        {name: "6.1.4.1. Benjamin"},
+                                        {name: "6.1.4.2. Mel"}
                                     ]
                                 }
                             ]
                         },
                         {
-                            name: "Sandra Oliveira",
+                            name: "6.2. Evaristo Antônio (Falecido)",
                             children: [
                                 {
-                                    name: "Daniel Oliveira",
+                                    name: "6.2.1. Evaristo (Mãe: Aparecida) e Aline",
                                     children: [
-                                        {name: "Maria Alice Oliveira"},
-                                        {name: "Gael Oliveira"}
+                                        {name: "6.2.1.1. Evaristo"},
+                                        {name: "6.2.1.2. Manoel"}
                                     ]
                                 },
                                 {
-                                    name: "Cristina Oliveira",
+                                    name: "6.2.2. José Flávio (Mãe: Aparecida) e Alessandra",
                                     children: [
-                                        {name: "Pietra Oliveira"},
-                                        {name: "Anthony Oliveira"},
-                                        {name: "Stella Oliveira"}
+                                        {name: "6.2.2.1. Laura"}
+                                    ]
+                                },
+                                {
+                                    name: "6.2.3. Daniela (Mãe: Aparecida) e Henrique",
+                                    children: [
+                                        {name: "6.2.3.1. Bernardo"}
                                     ]
                                 }
+                            ]
+                        },
+                        {
+                            name: "6.3. Lenita (Falecida) e Roberto (Falecido)",
+                            children: [
+                                {
+                                    name: "6.3.1. Renato e Nayana",
+                                    children: [
+                                        {name: "6.3.1.1. Miguel (Mãe: Nara)"},
+                                        {name: "6.3.1.2. Júlia (Mãe: Nara)"}
+                                    ]
+                                },
+                                {
+                                    name: "6.3.2. Leonardo",
+                                    children: [
+                                        {name: "6.3.2.1. Ana Flávia (Mãe: Flávia)"},
+                                        {name: "6.3.2.2. Isabela (Mãe: Flávia)"},
+                                        {name: "6.3.2.3. Fernanda (Mãe: Flávia)"}
+                                    ]
+                                },
+                                {
+                                    name: "6.3.3. Gustavo e Marina",
+                                    children: [
+                                        {name: "6.3.3.1. Manuela"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "6.4. Rogério e Sonia",
+                            children: [
+                                {
+                                    name: "6.4.1. Alice e Wagner",
+                                    children: [
+                                        {name: "6.4.1.1. Catarina"},
+                                        {name: "6.4.1.2. Mateus"},
+                                        {name: "6.4.1.3. Beatriz"}
+                                    ]
+                                },
+                                {
+                                    name: "6.4.2. Luiza e Gil Eduardo",
+                                    children: [
+                                        {name: "6.4.2.1. Íris"},
+                                        {name: "6.4.2.2. Gil Gabriel"}
+                                    ]
+                                },
+                                {
+                                    name: "6.4.3. Breno e Monica",
+                                    children: [
+                                        {name: "6.4.3.1. Lucas"},
+                                        {name: "6.4.3.2. Lis"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "6.5. Virgílio",
+                            children: [
+                                {
+                                    name: "6.5.1. Nicolas (Mãe: Mara)",
+                                    children: [
+                                        {name: "6.5.1.1. Pedro"},
+                                        {name: "6.5.1.2. Cristiano"}
+                                    ]
+                                },
+                                {
+                                    name: "6.5.2. Gabriel e Bruna",
+                                    children: [
+                                        {name: "6.5.2.1. Leonardo"}
+                                    ]
+                                },
+                                {
+                                    name: "6.5.3. Anaís (Mãe: Ana Esther)",
+                                    children: [
+                                        {name: "6.5.3.1. Aurora (Pai: Thiago)"}
+                                    ]
+                                },
+                                {name: "6.5.4. Tácio (Mãe: Dalgiza)"}
+                            ]
+                        },
+                        {
+                            name: "6.6. Lenice e João Guilherme",
+                            children: [
+                                {
+                                    name: "6.6.1. Cláudia Flávio",
+                                    children: [
+                                        {name: "6.6.1.1. Guilherme"}
+                                    ]
+                                },
+                                {
+                                    name: "6.6.2. Simone e Guilherme",
+                                    children: [
+                                        {name: "6.6.2.1. Laís"},
+                                        {name: "6.6.2.2. Téo"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "6.7. Evandro e Suely",
+                            children: [
+                                {name: "6.7.1. André (Mãe: Rosana) e Gustavo"},
+                                {
+                                    name: "6.7.2. Cíntia (Mãe: Rosana) e Renata",
+                                    children: [
+                                        {name: "6.7.2.1. João Gabriel"}
+                                    ]
+                                },
+                                {name: "6.7.3. Carolina (Mãe: Rosana)"},
+                                {
+                                    name: "6.7.4. Bruno (Mãe: Rosana) e Flávia",
+                                    children: [
+                                        {name: "6.7.4.1. Maria Vitória (Mãe: Adélia)"},
+                                        {name: "6.7.4.2. Giovana"},
+                                        {name: "6.7.4.3. Antônio"}
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "6.8. Maria Regina",
+                            children: [
+                                {name: "6.8.1. Tomáz e Gabriela (Pai: Flamarion)"}
                             ]
                         }
                     ]
                 },
                 {
-                    name: "Ana Costa",
+                    name: "7. Vicente (Falecido) e Tereza (Falecida)",
                     children: [
                         {
-                            name: "Felipe Costa",
+                            name: "7.1. Cássio e Cláudia",
                             children: [
                                 {
-                                    name: "Larissa Costa",
+                                    name: "7.1.1. Gustavo e Débora",
                                     children: [
-                                        {name: "Isaac Costa"},
-                                        {name: "Maitê Costa"}
+                                        {name: "7.1.1.1. Gustavo"}
                                     ]
                                 },
                                 {
-                                    name: "Victor Costa",
+                                    name: "7.1.2. Marcela e Rômulo",
                                     children: [
-                                        {name: "Cauã Costa"},
-                                        {name: "Esther Costa"},
-                                        {name: "Thomas Costa"}
+                                        {name: "7.1.2.1. Lara"}
                                     ]
                                 }
                             ]
                         },
                         {
-                            name: "Juliana Costa",
+                            name: "7.2. Marta",
                             children: [
                                 {
-                                    name: "Renato Costa",
+                                    name: "7.2.1. Alberto (Pai: Alberto) e Erika",
                                     children: [
-                                        {name: "Luna Costa"},
-                                        {name: "Murilo Costa"}
+                                        {name: "7.2.1.1. Laura"},
+                                        {name: "7.2.1.2. Augusto"}
                                     ]
                                 },
                                 {
-                                    name: "Carolina Costa",
+                                    name: "7.2.2. Rachel e André",
                                     children: [
-                                        {name: "Agatha Costa"},
-                                        {name: "Ryan Costa"},
-                                        {name: "Emilly Costa"}
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                },
-                {
-                    name: "Carlos Pereira",
-                    children: [
-                        {
-                            name: "Daniela Pereira",
-                            children: [
-                                {
-                                    name: "Thiago Pereira",
-                                    children: [
-                                        {name: "Sophia Pereira"},
-                                        {name: "Henrique Pereira"}
-                                    ]
-                                },
-                                {
-                                    name: "Amanda Pereira",
-                                    children: [
-                                        {name: "Ravi Pereira"},
-                                        {name: "Olívia Pereira"},
-                                        {name: "Caleb Pereira"}
+                                        {
+                                            name: "7.2.2.1. Mariana e Jesper",
+                                            children: [
+                                                {name: "7.2.2.1.1. Tereza"},
+                                                {name: "7.2.2.1.2. Kaj"}
+                                            ]
+                                        },
+                                        {name: "7.2.2.2. Daniel"}
                                     ]
                                 }
                             ]
                         },
+                        {name: "7.3. Adriano"},
                         {
-                            name: "Rodrigo Pereira",
+                            name: "7.4. Myriam",
                             children: [
-                                {
-                                    name: "Bianca Pereira",
-                                    children: [
-                                        {name: "Ian Pereira"},
-                                        {name: "Catarina Pereira"}
-                                    ]
-                                },
-                                {
-                                    name: "Gustavo Pereira",
-                                    children: [
-                                        {name: "Clara Pereira"},
-                                        {name: "Vicente Pereira"}
-                                    ]
-                                }
+                                {name: "7.4.1. Marina (Pai: Maurício)"},
+                                {name: "7.4.2. Alice (Pai: Maurício)"},
+                                {name: "7.4.3. Sofia (Pai: Maurício)"}
                             ]
                         }
                     ]
